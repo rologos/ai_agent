@@ -16,7 +16,7 @@ def get_files_info(working_directory, directory="."):
     for item in contents:
         p = os.path.join(joined_path,item)
         if os.path.isfile(p):
-            list_str.append(f" - {item}: file_size={os.path.getsize(item)} bytes, is_dir=False")
+            list_str.append(f" - {item}: file_size={os.path.getsize(p)} bytes, is_dir=False")
         else:
             list_str.append(f" - {item}: file_size=12 bytes, is_dir=True")
 

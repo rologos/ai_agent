@@ -8,6 +8,14 @@ class TestGetFiles(unittest.TestCase):
         result = get_files_info("calculator", "../")
         self.assertIn("Error:",result)
 
+    def test_current(self):
+        print(f"Result for current directory:")
+        result = get_files_info("calculator", ".")
+        self.assertIn("tests.py",result)
+        self.assertIn("main.py",result)
+        self.assertIn("is_dir=False",result)
+        self.assertIn("is_dir=True",result)
+
 '''
     def test_get_current(self):
 

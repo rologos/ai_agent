@@ -1,28 +1,23 @@
 import unittest
-from functions.get_files_info import get_files_info 
-from functions.get_file_content import get_file_content 
+from functions.write_file import write_file 
 
 class TestGetFiles(unittest.TestCase):
 
-    def test_get_parent(self):
-        print(f"Result for \'../\' directory:")
-        result = get_file_content("calculator", "main.py")
+    def test_1(self):
+        result = write_file("calculator", "lorem.txt", "wait, this isn't lorem ipsum")
         print(result)
+        self.assertIn("28 characters written",result)
 
-    def test_current(self):
-        print(f"Result for current directory:")
-        result = get_file_content("calculator", "pkg/calculator.py")
+    def test_2(self):
+        result = write_file("calculator", "pkg/morelorem.txt", "lorem ipsum dolor sit amet")
         print(result)
+        self.assertIn("26 characters written",result)
 
-    def test_pkg(self):
-        print(f"Result for \'pkg\' directory:")
-        result = get_file_content("calculator", "/bin/cat")
+    def test_3(self):
+        result = write_file("calculator", "/tmp/temp.txt", "this should not be allowed")
+        print(result)
         self.assertIn("Error:",result)
 
-    def test_bin(self):
-        print(f"Result for \'/bin\' directory:")
-        result = get_file_content("calculator", "pkg/does_not_exist.py")
-        self.assertIn("Error:",result)
 
 if __name__ == "__main__":
     unittest.main()

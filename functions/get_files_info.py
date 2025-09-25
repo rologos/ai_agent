@@ -16,11 +16,9 @@ schema_get_files_info = types.FunctionDeclaration(
     ),
 )
 
-def get_files_info(args):
-    directory = args.get('directory', '.')
-    abs_working_dir = os.path.abspath(config.WORKING_DIRECTORY)
-    print(directory)
-    target_dir = os.path.abspath(os.path.join(config.WORKING_DIRECTORY, directory))
+def get_files_info(working_directory, directory="."):
+    abs_working_dir = os.path.abspath(working_directory)
+    target_dir = os.path.abspath(os.path.join(working_directory, directory))
     if not target_dir.startswith(abs_working_dir):
         return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
     if not os.path.isdir(target_dir):
